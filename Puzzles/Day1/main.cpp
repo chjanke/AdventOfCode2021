@@ -6,35 +6,35 @@
 
 namespace AoC::Day1 {
 
-    void star_one()
+    int star_one()
     {
         std::fstream input{ "input.txt"};
         int count = 0;
         AoC::sliding_window<2>(std::istream_iterator<int>{input}, std::istream_iterator<int>{}, [&](int i, int j) { if (i < j) ++count; });
-        std::cout << count;
+        return count;
     }
 
-    void star_two()
+    int star_two()
     {
         std::fstream input("input.txt");
-        int count = 0;
-        int prevSum = std::numeric_limits<int>::max();
+        int count = -1;
+        int prevSum = 0;
         AoC::sliding_window<3>(std::istream_iterator<int>{input}, std::istream_iterator<int>{},
             [&](int i, int j, int k) {
                 int const sum = i + j + k;
                 if (sum > prevSum) {
-                    prevSum = sum;
                     ++count;
                 }
+                prevSum = sum;
             }
         );
-        std::cout << count;
+        return count;
     }
 
 }
 
 
 int main() {
-    AoC::Day1::star_one();
-    AoC::Day1::star_two();
+    std::cout << AoC::Day1::star_one() << '\n';
+    std::cout << AoC::Day1::star_two() << '\n';
 }
