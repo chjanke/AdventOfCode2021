@@ -1,40 +1,15 @@
-#include <fstream>
 #include <iostream>
-#include <limits>
 
-#include "AoC-Utils/algorithm/sliding_window.hpp"
+#include <AoC-Utils/input/input.hpp>
 
-namespace AoC::Day1 {
+#include "day1.hpp"
 
-    int star_one()
-    {
-        std::fstream input{ "input.txt"};
-        int count = 0;
-        AoC::sliding_window<2>(std::istream_iterator<int>{input}, std::istream_iterator<int>{}, [&](int i, int j) { if (i < j) ++count; });
-        return count;
-    }
-
-    int star_two()
-    {
-        std::fstream input("input.txt");
-        int count = -1;
-        int prevSum = 0;
-        AoC::sliding_window<3>(std::istream_iterator<int>{input}, std::istream_iterator<int>{},
-            [&](int i, int j, int k) {
-                int const sum = i + j + k;
-                if (sum > prevSum) {
-                    ++count;
-                }
-                prevSum = sum;
-            }
-        );
-        return count;
-    }
-
-}
 
 
 int main() {
-    std::cout << AoC::Day1::star_one() << '\n';
-    std::cout << AoC::Day1::star_two() << '\n';
+    std::fstream input = AoC::read_input();
+    std::cout << AoC::Day1::star_one(input) << '\n';
+    input.clear();
+    input.seekg(0);
+    std::cout << AoC::Day1::star_two(input) << '\n';
 }
