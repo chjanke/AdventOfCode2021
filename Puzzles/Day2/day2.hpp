@@ -1,4 +1,7 @@
 #include <string_view>
+#include <iostream>
+#include <string>
+#include <cstdlib>
 
 namespace AoC::Day2 {
 
@@ -6,7 +9,7 @@ namespace AoC::Day2 {
 	constexpr std::string_view kDown = "down";
 	constexpr std::string_view kUp = "up";
 
-	int star_one(std::istream& input)
+	inline int star_one(std::istream& input)
 	{
 		int sub_pos = 0;
 		int depth = 0;
@@ -28,7 +31,7 @@ namespace AoC::Day2 {
 		return sub_pos * depth;
 	}
 
-	int star_two(std::istream& input)
+	inline int star_two(std::istream& input)
 	{
 		int sub_pos = 0;
 		int aim = 0;
